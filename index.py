@@ -64,8 +64,6 @@ for i in range(T4+T3+T2):
     elif len(teamPizzas) == 2:
         T2left -= 1
 
-    print(teamPizzas)
-
     teamPizzas.insert(0, len(teamPizzas))
     distributedPizzas.append(teamPizzas)
 
