@@ -8,6 +8,6 @@ Change input file name to test different datasets
 | :---: | :---: |
 | a  | 0.031s  |
 | b  | 0.108s  |
-| c  | ? |
-| d  | ?  |
-| e  | ?  |
+| c  | 1m20.578s |
+| d  | 9m23.289s  |
+| e  | 27m50.369s  |
