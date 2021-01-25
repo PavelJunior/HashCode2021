@@ -32,6 +32,8 @@ for i in range(T4+T3+T2):
         nextPizzaWasted = 0
         nextPizzaNew = 0
         for k, v in enumerate(Pizzas):
+            if len(v) < nextPizzaNew+2:
+                continue
             curWaste = 0
             curNew = 0
             newIngredients = []
@@ -61,6 +63,8 @@ for i in range(T4+T3+T2):
         T3left -= 1
     elif len(teamPizzas) == 2:
         T2left -= 1
+
+    print(teamPizzas)
 
     teamPizzas.insert(0, len(teamPizzas))
     distributedPizzas.append(teamPizzas)
