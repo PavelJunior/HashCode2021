@@ -11,11 +11,10 @@ for i in range(PizzaNumber):
 Pizzas = sorted(Pizzas.values(), key=itemgetter(1), reverse=True)
 TeamNumber = 0
 distributedPizzas = []
-T4left = T4
-T3left = T3
-T2left = T2
+teamsNumber = T4+T3+T2
 
-for i in range(T4+T3+T2):
+
+for i in range(teamsNumber):
     if len(Pizzas) < 2:
         break
 
@@ -23,13 +22,13 @@ for i in range(T4+T3+T2):
     teamPizzas = [p[0]]
     teamPizzaIngredients = [i for i in p[2:]]
     while True:
-        if (len(teamPizzas) == 3 and T4left == 0) or \
-                (len(teamPizzas) == 2 and T3left == 0 and len(teamPizzas) == 2 and T4left == 0) or \
+        if (len(teamPizzas) == 3 and T4 == 0) or \
+                (len(teamPizzas) == 2 and T3 == 0 and len(teamPizzas) == 2 and T4 == 0) or \
                 (len(Pizzas) == 0) or len(teamPizzas) == 4:
             break
 
         nextPizzaId = 0
-        nextPizzaWasted = 0
+        nextPizzaWasted = 10000000000
         nextPizzaNew = 0
         for k, v in enumerate(Pizzas):
             if len(v) < nextPizzaNew+2:
@@ -42,12 +41,7 @@ for i in range(T4+T3+T2):
                     curNew += 1
                 else:
                     curWaste += 1
-            if curNew > nextPizzaNew:
-                nextPizzaNew = curNew
-                nextPizzaWasted = curWaste
-                nextPizzaId = k
-                newIngredients = v[2:]
-            elif curNew >= nextPizzaNew and curWaste < nextPizzaWasted:
+            if curNew >= nextPizzaNew and curNew - curWaste > nextPizzaNew - nextPizzaWasted and curWaste < nextPizzaWasted:
                 nextPizzaNew = curNew
                 nextPizzaWasted = curWaste
                 nextPizzaId = k
@@ -58,11 +52,11 @@ for i in range(T4+T3+T2):
 
 
     if len(teamPizzas) == 4:
-        T4left -= 1
+        T4 -= 1
     elif len(teamPizzas) == 3:
-        T3left -= 1
+        T3 -= 1
     elif len(teamPizzas) == 2:
-        T2left -= 1
+        T2 -= 1
 
     teamPizzas.insert(0, len(teamPizzas))
     distributedPizzas.append(teamPizzas)
